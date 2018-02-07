@@ -26,11 +26,11 @@ namespace PipServices.Settings.Client.Version1
             }
         }
 
-        public Task<ConfigParams> GetSectionByIdAsync(string correlationId, string id)
+        public Task<Dictionary<string, dynamic>> GetSectionByIdAsync(string correlationId, string id)
         {
             using (var timing = Instrument(correlationId))
             {
-                return CallCommand<ConfigParams>("get_section_by_id", correlationId, new
+                return CallCommand<Dictionary<string, dynamic>>("get_section_by_id", correlationId, new
                 {
                     correlation_id = correlationId,
                     id = id
@@ -65,11 +65,11 @@ namespace PipServices.Settings.Client.Version1
             }
         }
 
-        public Task<ConfigParams> ModifySectionAsync(string correlationId, string id, ConfigParams updateParams, ConfigParams incrementParams)
+        public Task<Dictionary<string, dynamic>> ModifySectionAsync(string correlationId, string id, Dictionary<string, dynamic> updateParams, Dictionary<string, dynamic> incrementParams)
         {
             using (var timing = Instrument(correlationId))
             {
-                return CallCommand<ConfigParams>("modify_section", correlationId, new
+                return CallCommand<Dictionary<string, dynamic>>("modify_section", correlationId, new
                 {
                     correlation_id = correlationId,
                     id = id,
@@ -79,11 +79,11 @@ namespace PipServices.Settings.Client.Version1
             }
         }
 
-        public Task<ConfigParams> SetSectionAsync(string correlationId, string id, ConfigParams parameters)
+        public Task<Dictionary<string, dynamic>> SetSectionAsync(string correlationId, string id, Dictionary<string, dynamic> parameters)
         {
             using (var timing = Instrument(correlationId))
             {
-                return CallCommand<ConfigParams>("set_section", correlationId, new
+                return CallCommand<Dictionary<string, dynamic>>("set_section", correlationId, new
                 {
                     correlation_id = correlationId,
                     id = id,

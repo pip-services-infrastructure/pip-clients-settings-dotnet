@@ -12,7 +12,7 @@ namespace PipServices.Settings.Client.Version1
     {
         public SettingSectionV1() { }
 
-        public SettingSectionV1(string id, ConfigParams param)
+        public SettingSectionV1(string id, Dictionary<string, dynamic> param)
         {
             this.Id = id;
             this.Parameters = param;
@@ -22,14 +22,14 @@ namespace PipServices.Settings.Client.Version1
         public SettingSectionV1(string id)
         {
             this.Id = id;
-            this.Parameters = new ConfigParams();
+            this.Parameters = new Dictionary<string, dynamic>();
             this.UpdateTime = new DateTime();
         }
 
         [DataMember(Name = "id")]
         public string Id { get; set; }
         [DataMember(Name = "parameters")]
-        public ConfigParams Parameters { set; get; }
+        public Dictionary<string, dynamic> Parameters { set; get; }
         [DataMember(Name = "update_time")]
         public DateTime UpdateTime { set; get; }
 
