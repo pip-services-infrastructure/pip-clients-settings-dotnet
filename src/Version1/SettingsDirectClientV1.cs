@@ -1,0 +1,51 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Threading.Tasks;
+using PipServices.Commons.Config;
+using PipServices.Commons.Data;
+using PipServices.Commons.Refer;
+using PipServices.Net.Direct;
+
+namespace PipServices.Settings.Client.Version1
+{
+    public class SettingsDirectClientV1 : DirectClient<dynamic>, ISettingsClientV1
+    {
+
+        public SettingsDirectClientV1() : base()
+        {
+            this._dependencyResolver.Put("controller", new Descriptor("pip-services-settings", "controller", "*", "*", "*"));
+        }
+
+        public Task<SettingSectionV1> DeleteSectionByIdAsync(string correlationId, string id)
+        {
+            return this._controller.DeleteSectionByIdAsync(correlationId, id);
+        }
+
+        public Task<ConfigParams> GetSectionByIdAsync(string correlationId, string id)
+        {
+            return this._controller.getSectionById(correlationId, id);
+        }
+
+        public Task<DataPage<string>> GetSectionIdsAsync(string correlationId, FilterParams filter, PagingParams paging)
+        {
+            //var timing = this.Instrument(correlationId, "settings.get_section_ids");
+            return this._controller.getSectionIds(correlationId, filter, paging);
+        }
+
+        public Task<DataPage<SettingSectionV1>> GetSectionsAsync(string correlationId, FilterParams filter, PagingParams paging)
+        {
+            return this._controller.getSections(correlationId, filter, paging);
+        }
+
+        public Task<ConfigParams> ModifySectionAsync(string correlationId, string id, ConfigParams updateParams, ConfigParams incrementParams)
+        {
+            return this._controller.modifySection(correlationId, id, updateParams, incrementParams);
+        }
+
+        public Task<ConfigParams> SetSectionAsync(string correlationId, string id, ConfigParams parameters)
+        {
+            return this._controller.setSection(correlationId, id, parameters);
+        }
+    }
+}
