@@ -22,7 +22,7 @@ namespace PipServices.Settings.Client.Version1
             return this._controller.DeleteSectionByIdAsync(correlationId, id);
         }
 
-        public Task<ConfigParams> GetSectionByIdAsync(string correlationId, string id)
+        public Task<Dictionary<string, dynamic>> GetSectionByIdAsync(string correlationId, string id)
         {
             return this._controller.getSectionById(correlationId, id);
         }
@@ -38,12 +38,12 @@ namespace PipServices.Settings.Client.Version1
             return this._controller.getSections(correlationId, filter, paging);
         }
 
-        public Task<ConfigParams> ModifySectionAsync(string correlationId, string id, ConfigParams updateParams, ConfigParams incrementParams)
+        public Task<Dictionary<string, dynamic>> ModifySectionAsync(string correlationId, string id, Dictionary<string, dynamic> updateParams, Dictionary<string, dynamic> incrementParams)
         {
             return this._controller.modifySection(correlationId, id, updateParams, incrementParams);
         }
 
-        public Task<ConfigParams> SetSectionAsync(string correlationId, string id, ConfigParams parameters)
+        public Task<Dictionary<string, dynamic>> SetSectionAsync(string correlationId, string id, Dictionary<string, dynamic> parameters)
         {
             return this._controller.setSection(correlationId, id, parameters);
         }
