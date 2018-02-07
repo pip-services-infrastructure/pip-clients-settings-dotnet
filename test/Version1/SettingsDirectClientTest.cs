@@ -1,6 +1,8 @@
 ﻿using Microsoft.Extensions.Logging.Console;
 using PipServices.Commons.Refer;
 using PipServices.Settings.Client.Version1;
+using PipServices.Settings.Logic;
+using PipServices.Settings.Persistence;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -23,7 +25,7 @@ namespace PipServices.Settings.Client.Test.Version1
                 new Descriptor("pip-services-settings", "controller", "default", "default", "1.0"), controller
     
             );
-            controller.setReferences(references);
+            controller.SetReferences(references);
 
             _client = new SettingsDirectClientV1();
             _client.SetReferences(references);
