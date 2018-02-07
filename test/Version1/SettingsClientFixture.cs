@@ -12,10 +12,10 @@ namespace PipServices.Settings.Client.Test.Version1
     public class SettingsClientFixture
     {
 
-        private static SettingSectionV1 SETTING1 = new SettingSectionV1("1", new ConfigParams());
-        private static SettingSectionV1 SETTING2 = new SettingSectionV1("2", new ConfigParams(new Dictionary<string, string>(){
-                    { "param", "0"}
-                }));
+        private static SettingSectionV1 SETTING1 = new SettingSectionV1("1", new Dictionary<string, dynamic>());
+        private static SettingSectionV1 SETTING2 = new SettingSectionV1("2", new Dictionary<string, dynamic>() {
+                    { "param", 0}
+                });
 
         private readonly ISettingsClientV1 _client;
 
@@ -27,13 +27,13 @@ namespace PipServices.Settings.Client.Test.Version1
         public async Task TestCrudOperationsAsync()
         {
             // Create one setting
-            ConfigParams param = await _client.SetSectionAsync(null, SETTING1.Id, SETTING1.Parameters);
+            Dictionary<string, dynamic> param = await _client.SetSectionAsync(null, SETTING1.Id, SETTING1.Parameters);
 
             Assert.NotNull(param);
             Assert.Equal(SETTING1.Parameters, param);
 
             // Create another setting
-            ConfigParams param2 = await _client.SetSectionAsync(null, SETTING2.Id, SETTING2.Parameters);
+            Dictionary<string, dynamic> param2 = await _client.SetSectionAsync(null, SETTING2.Id, SETTING2.Parameters);
 
             Assert.NotNull(param);
             Assert.Equal(SETTING2.Parameters, param);
@@ -50,9 +50,9 @@ namespace PipServices.Settings.Client.Test.Version1
             idsActual.Add(SETTING2.Id);
 
             // Update the setting
-            param = new ConfigParams();
+            param = new Dictionary<string, dynamic>();
             param["newKey"] = "text";
-            ConfigParams paramsModify = await _client.ModifySectionAsync(
+            Dictionary<string, dynamic> paramsModify = await _client.ModifySectionAsync(
                 null,
                 SETTING1.Id,
                 param,
@@ -62,7 +62,7 @@ namespace PipServices.Settings.Client.Test.Version1
             Assert.NotNull(paramsModify);
             Assert.Equal(param, paramsModify);
 
-            param = new ConfigParams();
+            param = new Dictionary<string, dynamic>();
             param["param"] = "5";
             paramsModify = await _client.ModifySectionAsync(
                 null,
