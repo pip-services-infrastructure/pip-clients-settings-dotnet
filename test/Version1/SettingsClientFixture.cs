@@ -1,6 +1,7 @@
 ﻿using PipServices.Commons.Config;
 using PipServices.Commons.Data;
 using PipServices.Settings.Client.Version1;
+using PipServices.Settings.Data.Version1;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -12,9 +13,9 @@ namespace PipServices.Settings.Client.Test.Version1
     public class SettingsClientFixture
     {
 
-        private static SettingSectionV1 SETTING1 = new SettingSectionV1("1", new Dictionary<string, dynamic>());
-        private static SettingSectionV1 SETTING2 = new SettingSectionV1("2", new Dictionary<string, dynamic>() {
-                    { "param", 0}
+        private SettingSectionClientV1 SETTING1 = new SettingSectionClientV1("1", new Dictionary<string, dynamic>());
+        private SettingSectionClientV1 SETTING2 = new SettingSectionClientV1("2", new Dictionary<string, dynamic>() {
+                    { "param", 2}
                 });
 
         private readonly ISettingsClientV1 _client;
@@ -35,8 +36,8 @@ namespace PipServices.Settings.Client.Test.Version1
             // Create another setting
             Dictionary<string, dynamic> param2 = await _client.SetSectionAsync(null, SETTING2.Id, SETTING2.Parameters);
 
-            Assert.NotNull(param);
-            Assert.Equal(SETTING2.Parameters, param);
+            Assert.NotNull(param2);
+            Assert.Equal(SETTING2.Parameters, param2);
 
             // Get all settings
             DataPage<SettingSectionV1> page = await _client.GetSectionsAsync(null, null, null);
@@ -60,7 +61,7 @@ namespace PipServices.Settings.Client.Test.Version1
             );
 
             Assert.NotNull(paramsModify);
-            Assert.Equal(param, paramsModify);
+            Assert.Equal(param["newKey"], paramsModify["newKey"]);
 
             param = new Dictionary<string, dynamic>();
             param["param"] = "5";
@@ -72,14 +73,14 @@ namespace PipServices.Settings.Client.Test.Version1
             );
 
             Assert.NotNull(paramsModify);
-            Assert.Equal(param, paramsModify);
+            Assert.Equal(7, paramsModify["param"]);
 
             // Delete the setting
             await _client.DeleteSectionByIdAsync(null, SETTING2.Id);
 
             // Try to get deleted setting
-            param = await _client.GetSectionByIdAsync(null, SETTING1.Id);
-            Assert.Null(param);
+            param = await _client.GetSectionByIdAsync(null, SETTING2.Id);
+            Assert.Empty(param);
         }
     }
 }

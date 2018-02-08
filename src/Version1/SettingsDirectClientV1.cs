@@ -6,6 +6,7 @@ using PipServices.Commons.Config;
 using PipServices.Commons.Data;
 using PipServices.Commons.Refer;
 using PipServices.Net.Direct;
+using PipServices.Settings.Data.Version1;
 
 namespace PipServices.Settings.Client.Version1
 {
@@ -17,35 +18,35 @@ namespace PipServices.Settings.Client.Version1
             this._dependencyResolver.Put("controller", new Descriptor("pip-services-settings", "controller", "*", "*", "*"));
         }
 
-        public Task<SettingSectionV1> DeleteSectionByIdAsync(string correlationId, string id)
+        public async Task<SettingSectionV1> DeleteSectionByIdAsync(string correlationId, string id)
         {
-            return this._controller.DeleteSectionByIdAsync(correlationId, id);
+            return await this._controller.DeleteSectionByIdAsync(correlationId, id);
         }
 
-        public Task<Dictionary<string, dynamic>> GetSectionByIdAsync(string correlationId, string id)
+        public async Task<Dictionary<string, dynamic>> GetSectionByIdAsync(string correlationId, string id)
         {
-            return this._controller.getSectionById(correlationId, id);
+            return await this._controller.GetSectionByIdAsync(correlationId, id);
         }
 
-        public Task<DataPage<string>> GetSectionIdsAsync(string correlationId, FilterParams filter, PagingParams paging)
+        public async Task<DataPage<string>> GetSectionIdsAsync(string correlationId, FilterParams filter, PagingParams paging)
         {
             //var timing = this.Instrument(correlationId, "settings.get_section_ids");
-            return this._controller.getSectionIds(correlationId, filter, paging);
+            return await this._controller.GetSectionIdsAsync(correlationId, filter, paging);
         }
 
-        public Task<DataPage<SettingSectionV1>> GetSectionsAsync(string correlationId, FilterParams filter, PagingParams paging)
+        public async Task<DataPage<SettingSectionV1>> GetSectionsAsync(string correlationId, FilterParams filter, PagingParams paging)
         {
-            return this._controller.getSections(correlationId, filter, paging);
+            return await this._controller.GetSectionsAsync(correlationId, filter, paging);
         }
 
-        public Task<Dictionary<string, dynamic>> ModifySectionAsync(string correlationId, string id, Dictionary<string, dynamic> updateParams, Dictionary<string, dynamic> incrementParams)
+        public async Task<Dictionary<string, dynamic>> ModifySectionAsync(string correlationId, string id, Dictionary<string, dynamic> updateParams, Dictionary<string, dynamic> incrementParams)
         {
-            return this._controller.modifySection(correlationId, id, updateParams, incrementParams);
+            return await this._controller.ModifySectionAsync(correlationId, id, updateParams, incrementParams);
         }
 
-        public Task<Dictionary<string, dynamic>> SetSectionAsync(string correlationId, string id, Dictionary<string, dynamic> parameters)
+        public async Task<Dictionary<string, dynamic>> SetSectionAsync(string correlationId, string id, Dictionary<string, dynamic> parameters)
         {
-            return this._controller.setSection(correlationId, id, parameters);
+            return await this._controller.SetSectionAsync(correlationId, id, parameters);
         }
     }
 }

@@ -8,18 +8,18 @@ using System.Text;
 namespace PipServices.Settings.Client.Version1
 {
     [DataContract]
-    public class SettingSectionV1 : IStringIdentifiable
+    public class SettingSectionClientV1 : IStringIdentifiable
     {
-        public SettingSectionV1() { }
+        public SettingSectionClientV1() { }
 
-        public SettingSectionV1(string id, Dictionary<string, dynamic> param)
+        public SettingSectionClientV1(string id, Dictionary<string, dynamic> param)
         {
             this.Id = id;
             this.Parameters = param;
             this.UpdateTime = new DateTime();
         }
 
-        public SettingSectionV1(string id)
+        public SettingSectionClientV1(string id)
         {
             this.Id = id;
             this.Parameters = new Dictionary<string, dynamic>();

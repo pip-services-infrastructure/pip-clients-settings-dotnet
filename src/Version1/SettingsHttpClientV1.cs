@@ -1,6 +1,7 @@
 ﻿using PipServices.Commons.Config;
 using PipServices.Commons.Data;
 using PipServices.Net.Rest;
+using PipServices.Settings.Data.Version1;
 using System;
 using System.Collections.Generic;
 using System.Text;

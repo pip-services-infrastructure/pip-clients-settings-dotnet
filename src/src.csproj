@@ -14,4 +14,10 @@
     <PackageReference Include="PipServices.Net" Version="2.1.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="PipServices.Settings">
+      <HintPath>..\..\pip-services-settings-dotnet\src\bin\Debug\netcoreapp2.0\PipServices.Settings.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>
