@@ -37,7 +37,7 @@ namespace PipServices.Settings.Client.Test.Version1
             Dictionary<string, dynamic> param2 = await _client.SetSectionAsync(null, SETTING2.Id, SETTING2.Parameters);
 
             Assert.NotNull(param2);
-            Assert.Equal(SETTING2.Parameters, param2);
+            Assert.Equal(SETTING2.Parameters["param"], param2["param"]);
 
             // Get all settings
             DataPage<SettingSectionV1> page = await _client.GetSectionsAsync(null, null, null);
