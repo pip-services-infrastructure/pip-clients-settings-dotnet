@@ -1,23 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>Library</OutputType>
-    <TargetFramework>netcoreapp2.0</TargetFramework>
-    <ApplicationIcon />
-    <StartupObject />
-    <RootNamespace>PipServices.Settings.Client</RootNamespace>
-    <AssemblyName>PipServices.Settings.Client</AssemblyName>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="PipServices.Commons" Version="2.2.1" />
-    <PackageReference Include="PipServices.Net" Version="2.1.1" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Reference Include="PipServices.Settings">
-      <HintPath>..\..\pip-services-settings-dotnet\src\bin\Debug\netcoreapp2.0\PipServices.Settings.dll</HintPath>
-    </Reference>
+    <PackageReference Include="PipServices3.Rpc" Version="3.0.5" />
   </ItemGroup>
 
 </Project>
